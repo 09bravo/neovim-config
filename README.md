@@ -1,3 +1,5 @@
+a semi-minimal neovim config
+
 # Installation
 first of all install [vim-plug](https://github.com/junegunn/vim-plug)
 ```
