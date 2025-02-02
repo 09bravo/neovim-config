@@ -16,7 +16,7 @@ nvim
 
 now that we made that clear, inside of neovim it will give you a bunch of errors just presse enter until the erorrs are gone then enter command mode (presse the ":" key) and enter the command ```PlugInstall```
 
-#Q&A
+# Q&A
 Q: why use this config
 A: idk
 Q: what  makes it semi-minamal
