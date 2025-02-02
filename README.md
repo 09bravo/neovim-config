@@ -12,4 +12,6 @@ mkdir ~/.config/nvim
 mv init.vim ~/.config/nvim/
 nvim
 ```
-then inside of neovim it will give you a bunch of errors just presse enter intel it is gone then enter command mode (presse the ":" key) and enter the command ```PlugInstall```
+--nvim +PlugInstall-- (i tried on a fresh install of neovim it made it unusable because of the erorrs treesitter wont able to compile or something of that note i am not sure that point is DO NOT RUN it)
+
+now that we made that clear, inside of neovim it will give you a bunch of errors just presse enter until the erorrs are gone then enter command mode (presse the ":" key) and enter the command ```PlugInstall```
