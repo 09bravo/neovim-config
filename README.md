@@ -18,8 +18,13 @@ now that we made that clear, inside of neovim it will give you a bunch of errors
 
 # Q&A
 Q: why use this config
+
 A: idk
+
 Q: what  makes it semi-minamal
+
 A: idk
+
 Q: why did you put Q&A if your going to put idk on everything
+
 A: idk
