@@ -11,18 +11,18 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mfussenegger/nvim-dap'
 Plug 'folke/noice.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'mrcjkb/rustaceanvim'
 call plug#end()
-set relativenumber
+set nu
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap " ""<Left>
 inoremap ' ''<Left>
 inoremap { {}<Left>
+set clipboard=unnamed,unnamedplus
 lua << EOF
 require("noice").setup({
   lsp = {
