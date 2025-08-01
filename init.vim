@@ -1,6 +1,6 @@
 call plug#begin()
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'rose-pine/neovim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
@@ -15,7 +15,8 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'folke/noice.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'mrcjkb/rustaceanvim'
-Plug 'alvan/vim-closetag'
+Plug 'windwp/nvim-ts-autotag'
+Plug 'catgoose/nvim-colorizer.lua'
 call plug#end()
 set nu
 inoremap ( ()<Left>
@@ -42,6 +43,17 @@ require("noice").setup({
     inc_rename = false, -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = false, -- add a border to hover docs and signature help
   },
+})
+require('nvim-ts-autotag').setup({
+  opts = {
+    -- Defaults
+    enable_close = true, -- Auto close tags
+    enable_rename = true, -- Auto rename pairs of tags
+    enable_close_on_slash = true -- Auto close on trailing </
+  },
+  -- Also override individual filetype configs, these take priority.
+  -- Empty by default, useful if one of the "opts" global settings
+  -- doesn't work well in a specific filetype
 })
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
@@ -300,12 +312,89 @@ ins_right {
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
-require("catppuccin").setup({
-    flavour = "mocha",
-    transparent_background = true,
+require("rose-pine").setup({
+    variant = "auto", -- auto, main, moon, or dawn
+    dark_variant = "main", -- main, moon, or dawn
+    dim_inactive_windows = false,
+    extend_background_behind_borders = true,
+
+    enable = {
+        terminal = true,
+        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+        migrations = true, -- Handle deprecated options automatically
+    },
+
+    styles = {
+        bold = true,
+        italic = true,
+        transparency = false,
+    },
+
+    groups = {
+        border = "muted",
+        link = "iris",
+        panel = "surface",
+
+        error = "love",
+        hint = "iris",
+        info = "foam",
+        note = "pine",
+        todo = "rose",
+        warn = "gold",
+
+        git_add = "foam",
+        git_change = "rose",
+        git_delete = "love",
+        git_dirty = "rose",
+        git_ignore = "muted",
+        git_merge = "iris",
+        git_rename = "pine",
+        git_stage = "iris",
+        git_text = "rose",
+        git_untracked = "subtle",
+
+        h1 = "iris",
+        h2 = "foam",
+        h3 = "rose",
+        h4 = "gold",
+        h5 = "pine",
+        h6 = "foam",
+    },
+
+    palette = {
+        -- Override the builtin palette per variant
+        -- moon = {
+        --     base = '#18191a',
+        --     overlay = '#363738',
+        -- },
+    },
+
+	-- NOTE: Highlight groups are extended (merged) by default. Disable this
+	-- per group via `inherit = false`
+    highlight_groups = {
+        -- Comment = { fg = "foam" },
+        -- StatusLine = { fg = "love", bg = "love", blend = 15 },
+        -- VertSplit = { fg = "muted", bg = "muted" },
+        -- Visual = { fg = "base", bg = "text", inherit = false },
+    },
+
+    before_highlight = function(group, highlight, palette)
+        -- Disable all undercurls
+        -- if highlight.undercurl then
+        --     highlight.undercurl = false
+        -- end
+        --
+        -- Change palette colour
+        -- if highlight.fg == palette.pine then
+        --     highlight.fg = palette.foam
+        -- end
+    end,
 })
-vim.cmd.colorscheme "catppuccin"
-vim.cmd [[ highlight LineNr guifg=lightmagenta ]]
+
+-- vim.cmd("colorscheme rose-pine")
+-- vim.cmd("colorscheme rose-pine-main")
+   vim.cmd("colorscheme rose-pine-moon")
+-- vim.cmd("colorscheme rose-pine-dawn")
 local cmp = require'cmp'
 
 cmp.setup({
@@ -355,4 +444,5 @@ require('lspconfig').cssls.setup{
 require('lspconfig').html.setup{
   capabilities = capabilities,
 }
+require("colorizer").setup()
 EOF
